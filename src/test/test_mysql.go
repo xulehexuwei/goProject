@@ -5,8 +5,8 @@ import (
 	"goApi/src/db"
 )
 
-func main()  {
+func main() {
 	sql := "select * from qa_xiaomu limit 10;"
-	error:= db_operate.GetDataByQuery("mysql", "qa_log", sql)
+	error := db.GetDataByQuery("mysql", "qa_log", sql)
 	fmt.Println(error)
 }

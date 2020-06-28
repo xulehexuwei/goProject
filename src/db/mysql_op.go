@@ -1,4 +1,4 @@
-package db_operate
+package db
 
 import (
 	"database/sql"
