@@ -1,6 +1,5 @@
 package config_log
 
-
 import (
 	"flag"
 	"github.com/larspensjo/config"
@@ -37,9 +36,12 @@ func findFIle(currentPath string, fileName string) (string, bool) {
 	return findFIle(currentPath, fileName)
 }
 
-func findConfigFile(fileName string) (string, bool) {
+func findConfigFile() (string, bool) {
 	currentPath := getCurrentPath()
-	filePath, state := findFIle(currentPath, fileName)
+	filePath, state := findFIle(currentPath, "settings.local.ini")
+	if state == false {
+		filePath, state = findFIle(currentPath, "settings.ini")
+	}
 	return filePath, state
 }
 
@@ -47,7 +49,7 @@ var (
 	//https://studygolang.com/articles/686
 	//支持命令行输入格式为-configfile=name, 默认为config.ini
 	//配置文件一般获取到都是类型
-	filePath, state = findConfigFile("config.ini")
+	filePath, state = findConfigFile()
 	configFile      = flag.String("configfile", filePath, "General configuration file")
 )
 
